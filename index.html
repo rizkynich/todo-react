@@ -3,14 +3,23 @@
 
 <head>
     <title>Todo List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 </head>
 
 <body>
-    <h1 style="color: red;">Daftar Makanan</h1>
-    <input type="text" name="makanan" placeholder="Masukan Nama Makanan" id="input-makanan">
-    <button id="button-dom">Tambah</button>
-    <ol id="ol-dom">
-    </ol>
+    <div class="container">
+        <h1 style="color: red;">Daftar Makanan</h1>
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Masukan Nama Makanan" id="input-makanan">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-dom">Tambah</button>
+            </div>
+        </div>
+        <ul class="list-group" id="ol-dom">
+        </ul>
+    </div>
 
     <script>
         let data = [];
@@ -23,6 +32,7 @@
         const inputDom = document.getElementById('input-makanan');
         const buttonDom = document.getElementById('button-dom');
         const olDom = document.getElementById('ol-dom');
+        const listItem = document.getElementsByClassName("list-item");
         // olDom.innerHTML = localStorage.getItem('list');
 
         // call function as variable
@@ -36,46 +46,53 @@
             data.push(makanan);
             localStorage.setItem('data', JSON.stringify(data));
             render();
+            inputDom.value = "";
         });
 
         function render() {
             let html = "";
             for (var i = 0; i < data.length; i++) {
-                html = html + `<li>${data[i]}</li>`;
+                html = html + `<li  class="list-group-item list-group-item-action" onClick="removeitem(${i})">${data[i]}</li>`;
             }
             olDom.innerHTML = html;
         }
 
+        function removeitem(id) {
+            data.splice(id, 1);
+            localStorage.setItem('data', JSON.stringify(data));
+            render();
+        }
+
         render();
 
-        var data_siswa = [
-            {
-                nama: "Musa",
-                umur: 1,
-                alamat: "Jakarta"
-            },
-            {
-                nama: "Zara",
-                umur: 2,
-                alamat: "Depok"
-            },
-            {
-                nama: "fadhil",
-                umur: 3,
-                alamat: "Tanggerang"
-            },
-            {
-                nama: "Rizky",
-                umur: 4,
-                alamat: "Ambon"
-            },
-            {
-                nama: "Asti",
-                umur: 5,
-                alamat: "Sukabumi"
-            }
-        ];
-        console.log(data_siswa);
+        // var data_siswa = [
+        //     {
+        //         nama: "Musa",
+        //         umur: 1,
+        //         alamat: "Jakarta"
+        //     },
+        //     {
+        //         nama: "Zara",
+        //         umur: 2,
+        //         alamat: "Depok"
+        //     },
+        //     {
+        //         nama: "fadhil",
+        //         umur: 3,
+        //         alamat: "Tanggerang"
+        //     },
+        //     {
+        //         nama: "Rizky",
+        //         umur: 4,
+        //         alamat: "Ambon"
+        //     },
+        //     {
+        //         nama: "Asti",
+        //         umur: 5,
+        //         alamat: "Sukabumi"
+        //     }
+        // ];
+        // console.log(data_siswa);
     </script>
 </body>
 
