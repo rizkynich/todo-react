@@ -13,11 +13,15 @@
     </ol>
 
     <script>
+        const data = [
+            'Opor',
+            'Bubur'
+        ]
         // from es6 define variable using let and consts for consts
         const inputDom = document.getElementById('input-makanan');
         const buttonDom = document.getElementById('button-dom');
         const olDom = document.getElementById('ol-dom');
-        olDom.innerHTML = localStorage.getItem('list');
+        // olDom.innerHTML = localStorage.getItem('list');
 
         // call function as variable
         // buttonDom.addEventListener('click', hello);
@@ -29,12 +33,51 @@
             const data = inputDom.value;
             const last_data = olDom.innerHTML;
             // console.log(last_data);
-            const list = last_data + "<li>" + data + "</li>";
-            olDom.innerHTML = list;
+            // const list = last_data + "<li>" + data + "</li>";
+            // olDom.innerHTML = list;
 
-            inputDom.value = "";
-            localStorage.setItem('list', list);
+            // inputDom.value = "";
+            // localStorage.setItem('list', list);
         });
+
+        function render() {
+            let html = "";
+            for (var i = 0; i < data.length; i++) {
+                html = html + `<li>${data[i]}</li>`;
+            }
+            olDom.innerHTML = html;
+        }
+
+        render();
+
+        var data_siswa = [
+            {
+                nama: "Musa",
+                umur: 1,
+                alamat: "Jakarta"
+            },
+            {
+                nama: "Zara",
+                umur: 2,
+                alamat: "Depok"
+            },
+            {
+                nama: "fadhil",
+                umur: 3,
+                alamat: "Tanggerang"
+            },
+            {
+                nama: "Rizky",
+                umur: 4,
+                alamat: "Ambon"
+            },
+            {
+                nama: "Asti",
+                umur: 5,
+                alamat: "Sukabumi"
+            }
+        ];
+        console.log(data_siswa);
     </script>
 </body>
 
