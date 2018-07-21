@@ -13,10 +13,12 @@
     </ol>
 
     <script>
-        const data = [
-            'Opor',
-            'Bubur'
-        ]
+        let data = [];
+        localData = JSON.parse(localStorage.getItem('data'));
+        if (localData != null) {
+            data = localData;
+        }
+
         // from es6 define variable using let and consts for consts
         const inputDom = document.getElementById('input-makanan');
         const buttonDom = document.getElementById('button-dom');
@@ -30,14 +32,10 @@
         // }
 
         buttonDom.addEventListener('click', function () {
-            const data = inputDom.value;
-            const last_data = olDom.innerHTML;
-            // console.log(last_data);
-            // const list = last_data + "<li>" + data + "</li>";
-            // olDom.innerHTML = list;
-
-            // inputDom.value = "";
-            // localStorage.setItem('list', list);
+            const makanan = inputDom.value;
+            data.push(makanan);
+            localStorage.setItem('data', JSON.stringify(data));
+            render();
         });
 
         function render() {
