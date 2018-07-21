@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Todo List</title>
+</head>
+
+<body>
+    <h1>Daftar Makanan</h1>
+    <input type="text" name="makanan" placeholder="Masukan Nama Makanan" id="input-makanan">
+    <button id="button-dom">Tambah</button>
+    <ol id="ol-dom">
+    </ol>
+
+    <script>
+        // from es6 define variable using let and consts for consts
+        const inputDom = document.getElementById('input-makanan');
+        const buttonDom = document.getElementById('button-dom');
+        const olDom = document.getElementById('ol-dom');
+        olDom.innerHTML = localStorage.getItem('list');
+
+        // call function as variable
+        // buttonDom.addEventListener('click', hello);
+        // function hello() {
+        //     alert("Hai");
+        // }
+
+        buttonDom.addEventListener('click', function () {
+            const data = inputDom.value;
+            const last_data = olDom.innerHTML;
+            // console.log(last_data);
+            const list = last_data + "<li>" + data + "</li>";
+            olDom.innerHTML = list;
+
+            inputDom.value = "";
+            localStorage.setItem('list', list);
+        });
+    </script>
+</body>
+
+</html>
